@@ -12,26 +12,40 @@ module.exports = app => {
     app.log(context.payload)
 
     sender = context['payload']['sender']['login']
-    if (sender != 'member-cop[bot]'){
+    bot = context['payload']['sender']['type']
+    if (bot != 'bot'){
       org = context['payload']['issue']['html_url']
-      app.log("======")
-      app.log(org)
-      app.log("======")
       var frontRegex = /https:\/\/github.com\//g
       org = org.replace(frontRegex, '')
       var backRegex = /\/.*/g
       org = org.replace(backRegex, '')
-      app.log("======")
-      app.log(org)
-      app.log("======")
-      // axios.get('https://api.github.com/orgs/' + org + '/members/' + sender)
-      // .then(response => {
-      //   console.log(response.data.url);
-      //   console.log(response.data.explanation);
-      // })
-      // .catch(error => {
-      //   console.log(error);
-      // });
+      url = 'https://api.github.com/orgs/' + org + '/members/' + sender
+      app.log('====')
+      app.log(url)
+      app.log('====')
+      axios.get(url)
+        .then(response => {
+          // We dont really want to do anything when members comment 
+        })
+        .catch(error => {
+          private_or_not_member_message = 'User does not exist or is not a public member of the organization'
+          err_msg = error.response.data.message
+          if (private_or_not_member_message = err_msg){
+            // Here we are either sure this person is not a member or a private member. 
+            // Lets make sure they are not a private member
+            comments_url = context['payload']['issue']['comments_url']
+            axios.get(comments_url)
+            .then(response => {
+              // Does the page show the commenter to be a member of the repo?
+              app.log(response)
+            })
+            .catch(error => {
+              // booo
+              app.log('Somthing went wrong getting the issue page')
+            })
+
+          }
+        })
 
 
       const issueComment = context.issue({ body: 'Thanks for opening this issue!' })
