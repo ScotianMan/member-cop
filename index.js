@@ -14,11 +14,16 @@ module.exports = app => {
     sender = context['payload']['sender']['login']
     if (sender != 'member-cop[bot]'){
       org = context['payload']['issue']['html_url']
+      app.log("======")
+      app.log(org)
+      app.log("======")
       var frontRegex = /https:\/\/github.com\//gi;
       org.replace(frontRegex, '')
       var backRegex = /\/.*/gi;
       org.replace(backRegex, '')
+      app.log("======")
       app.log(org)
+      app.log("======")
       // axios.get('https://api.github.com/orgs/' + org + '/members/' + sender)
       // .then(response => {
       //   console.log(response.data.url);
