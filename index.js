@@ -9,7 +9,7 @@ module.exports = app => {
   app.on('issue_comment', async context => {
     app.log(context)
 
-    if (context.sender.login != 'member-cop[bot]'){
+    if (context['sender']['login'] != 'member-cop[bot]'){
       const issueComment = context.issue({ body: 'Thanks for opening this issue!' })
       return context.github.issues.createComment(issueComment)
     }
