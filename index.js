@@ -17,10 +17,10 @@ module.exports = app => {
       app.log("======")
       app.log(org)
       app.log("======")
-      var frontRegex = /https:\/\/github.com\//gi;
-      org.replace(frontRegex, '')
-      var backRegex = /\/.*/gi;
-      org.replace(backRegex, '')
+      var frontRegex = /https:\/\/github.com\//g
+      org = org.replace(frontRegex, '')
+      var backRegex = /\/.*/g
+      org = org.replace(backRegex, '')
       app.log("======")
       app.log(org)
       app.log("======")
