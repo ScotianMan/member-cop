@@ -4,12 +4,18 @@
 
 ## Setup
 
-```sh
-# Install dependencies
-npm install
+```
+- add .github directory
+- add 
+# Link for member-bot to use for joining us
+howToJoinLink: >
+  https://yourWickedCoolURL.here
+  
+to /.github/config.yml
 
-# Run the bot
-npm start
+- go to https://github.com/apps/member-cop/ and install on the repo of your choice
+- give read/write permissions for issue comments
+- stop manually dealing with people asking if they can help and let them start helping sooner
 ```
 
 ## Contributing
