@@ -4,9 +4,9 @@
   "description": "An app to catch people making comments who are not repo members and comment with instructions",
   "author": "James Walsh <forjameswalsh@gmail.com>",
   "license": "ISC",
-  "repository": "https://github.com/scotianman/typescript.git",
-  "homepage": "https://github.com/scotianman/typescript",
-  "bugs": "https://github.com/scotianman/typescript/issues",
+  "repository": "https://github.com/scotianman/member-cop.git",
+  "homepage": "https://github.com/scotianman/member-cop",
+  "bugs": "https://github.com/scotianman/member-cop/issues",
   "keywords": [
     "probot",
     "github",
