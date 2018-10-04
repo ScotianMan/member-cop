@@ -5,7 +5,7 @@
 ## Setup
 
 ```
-- add .github directory
+- add .github directory to your project if not already there
 - add 
 # Link for member-bot to use for joining us
 howToJoinLink: >
