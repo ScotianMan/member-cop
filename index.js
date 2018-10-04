@@ -13,12 +13,14 @@ module.exports = app => {
     bot = context['payload']['sender']['type']
     // prevent infinite loop since this action is triggered even when a bot posts a comment :-P
     if (bot != 'Bot'){
+      // Probably a sexier way of doing this regex
       org = context['payload']['issue']['html_url']
       var frontRegex = /https:\/\/github.com\//g
       org = org.replace(frontRegex, '')
       var backRegex = /\/.*/g
       org = org.replace(backRegex, '')
       url = 'https://api.github.com/orgs/' + org + '/members/' + sender
+
       axios.get(url)
       .then(response => {
         // We dont really want to do anything when members comment 
@@ -30,6 +32,7 @@ module.exports = app => {
           // Here we are either sure this person is not a member or a private member. 
           // Lets make sure they are not a private member
           comments_url = context['payload']['comment']['html_url']
+
           axios.get(comments_url)
           .then(response => {
             // Lets get clever and scrape the HTML and see if this is a private member or not
@@ -41,6 +44,7 @@ module.exports = app => {
             comment_html = root.querySelector(comment_id_str).toString()
             owner_str = 'This user is the owner of the'
             member_str = 'You are a member of the'
+            
             // TODO: Has this person posted in this comments before? if so we should only have the bot reply once
             if (!comment_html.includes(owner_str) && !comment_html.includes(member_str)){
               // Here we finally know if the person posting the comment is a member.... even private ones muahahahaha ;-)
