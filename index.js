@@ -41,6 +41,11 @@ module.exports = app => {
             comment_id_str = comments_url.replace(comment_regex, '')
             // Does the page show the commenter to be a member of the repo?
             const root = HTMLParser.parse(response.data)
+            app.log('====')
+            app.log(comments_url)
+            app.log('====')
+            app.log(context)
+            app.log('====')
             comment_html = root.querySelector(comment_id_str).toString()
             owner_str = 'This user is the owner of the'
             member_str = 'You are a member of the'
