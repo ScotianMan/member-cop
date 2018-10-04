@@ -23,7 +23,10 @@ module.exports = app => {
 
       axios.get(url)
       .then(response => {
-        // We dont really want to do anything when members comment 
+        // We dont really want to do anything when members comment
+        app.log('====')
+        app.log('Public member comment')
+        app.log('====')
       })
       .catch(error => {
         private_or_not_member_message = 'User does not exist or is not a public member of the organization'
@@ -61,6 +64,10 @@ module.exports = app => {
                 ' to join our contributor community.'
               })
               return context.github.issues.createComment(issueComment)
+            } else {
+              app.log('====')
+              app.log('Private member comment or possible someone who doesnt exist lol')
+              app.log('====')
             }
           })
           .catch(error => {
