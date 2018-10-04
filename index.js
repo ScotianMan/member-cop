@@ -8,7 +8,7 @@ const HTMLParser = require('node-html-parser')
 module.exports = app => {
 
   app.on('issue_comment', async context => {
-
+    const config = await context.config('config.yml')
     sender = context['payload']['sender']['login']
     bot = context['payload']['sender']['type']
     // prevent infinite loop since this action is triggered even when a bot posts a comment :-P
@@ -52,7 +52,7 @@ module.exports = app => {
               const issueComment = context.issue({
                 body: 'Hey @' + sender + 
                 ', thanks for expressing your interest. We would love your help with this issue.' + 
-                ' Please follow these <a href="https://github.com/ifmeorg/ifme/wiki/Join-Our-Slack">next steps</a>' +
+                ' Please follow these <a href="' + config.howToJoinLink + '">next steps</a>' +
                 ' to join our contributor community.'
               })
               return context.github.issues.createComment(issueComment)
