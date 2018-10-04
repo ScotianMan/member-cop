@@ -11,6 +11,7 @@ module.exports = app => {
 
     sender = context['payload']['sender']['login']
     bot = context['payload']['sender']['type']
+    // prevent infinite loop since this action is triggered even when a bot posts a comment :-P
     if (bot != 'Bot'){
       org = context['payload']['issue']['html_url']
       var frontRegex = /https:\/\/github.com\//g
@@ -43,6 +44,7 @@ module.exports = app => {
             // TODO: Has this person posted in this comments before? if so we should only have the bot reply once
             if (!comment_html.includes(owner_str) && !comment_html.includes(member_str)){
               // Here we finally know if the person posting the comment is a member.... even private ones muahahahaha ;-)
+              // TODO: abstract this message to a config file somewhere
               const issueComment = context.issue({
                 body: 'Hey @' + sender + 
                 ', thanks for expressing your interest. We would love your help with this issue.' + 
