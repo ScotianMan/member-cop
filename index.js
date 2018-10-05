@@ -58,9 +58,10 @@ module.exports = app => {
             comment_html = root.querySelector(comment_id_str).toString()
             owner_str = 'This user is the owner of the'
             member_str = 'You are a member of the'
+            contributor_str = 'This user has previously committed to the'
             
             // TODO: Has this person posted in this comments before? if so we should only have the bot reply once
-            if (!comment_html.includes(owner_str) && !comment_html.includes(member_str)){
+            if (!comment_html.includes(owner_str) && !comment_html.includes(member_str) && !comment_html.includes(contributor_str)){
               // Here we finally know if the person posting the comment is a member.... even private ones muahahahaha ;-)
               // TODO: abstract this message to a config file somewhere
               const issueComment = context.issue({
