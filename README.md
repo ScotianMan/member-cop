@@ -1,14 +1,13 @@
 # member-cop
 
-> A GitHub App built with [Probot](https://probot.github.io) that An app to catch people making comments who are not repo members and comment with instructions
+> A GitHub App built with [Probot](https://probot.github.io) that An app to catch people making comments who are not repo members and comment with instructions. Currently comments when people are not owners/members/contributors. More updates and features coming soon!
 
 ## Setup
-
+<a href='https://github.com/apps/member-cop'>member-cop website</a>
 ```
-- install https://github.com/apps/member-cop
 - add .github directory to your project if not already there
 - add 
-# Link for member-bot to use for joining us
+# Link for member-cop to use for joining us
 howToJoinLink: >
   https://yourWickedCoolURL.here
   
