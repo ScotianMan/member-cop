@@ -3,9 +3,15 @@
  * @param {import('probot').Application} app - Probot's Application class.
  */
 const axios = require('axios')
+var http = require("http");
 const HTMLParser = require('node-html-parser')
 
 module.exports = app => {
+
+  // pesky heroku app going to sleep
+  setInterval(function() {
+      http.get("http://still-bastion-87015.herokuapp.com/");
+  }, 300000);
 
   app.on('issue_comment', async context => {
     const config = await context.config('config.yml')
