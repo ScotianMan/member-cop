@@ -57,7 +57,7 @@ module.exports = app => {
             app.log('====')
             comment_html = root.querySelector(comment_id_str).toString()
             owner_str = 'This user is the owner of the'
-            member_str = 'You are a member of the'
+            member_str = 'This user is a member of the'
             contributor_str = 'This user has previously committed to the'
             
             // TODO: Has this person posted in this comments before? if so we should only have the bot reply once
