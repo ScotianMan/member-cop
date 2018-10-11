@@ -53,6 +53,8 @@ module.exports = app => {
             app.log('====')
             app.log(comments_url)
             app.log('====')
+            app.log(comment_id_str)
+            app.log('====')
             app.log(context)
             app.log('====')
             comment_html = root.querySelector(comment_id_str).toString()
@@ -62,6 +64,11 @@ module.exports = app => {
             
             // TODO: Has this person posted in this comments before? if so we should only have the bot reply once
             if (!comment_html.includes(owner_str) && !comment_html.includes(member_str) && !comment_html.includes(contributor_str)){
+              app.log('----')
+              app.log(root.querySelector(comment_id_str).toString())
+              app.log('----')
+              app.log(comment_html)
+              app.log('----')
               // Here we finally know if the person posting the comment is a member.... even private ones muahahahaha ;-)
               // TODO: abstract this message to a config file somewhere
               const issueComment = context.issue({
