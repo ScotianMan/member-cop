@@ -67,6 +67,7 @@ module.exports = app => {
               app.log('----')
               app.log(root.querySelector(comment_id_str).toString())
               app.log('----')
+              app.log('----')
               app.log(comment_html)
               app.log('----')
               // Here we finally know if the person posting the comment is a member.... even private ones muahahahaha ;-)
@@ -81,6 +82,9 @@ module.exports = app => {
             } else {
               app.log('====')
               app.log('Private member comment or possible someone who doesnt exist lol')
+              const result = await context.github.orgs.checkMembership({org, sender})
+              
+              app.log(result)
               app.log('====')
             }
           })
