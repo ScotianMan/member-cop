@@ -81,6 +81,8 @@ module.exports = app => {
               return context.github.issues.createComment(issueComment)
             } else {
               app.log('====')
+              app.log(sender)
+              app.log('====')
               app.log('Private member comment or possible someone who doesnt exist lol')
               context.github.orgs.checkMembership({org, sender}).then(
                 result => {
