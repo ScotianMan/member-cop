@@ -84,7 +84,7 @@ module.exports = app => {
               app.log(sender)
               app.log('====')
               app.log('Private member comment or possible someone who doesnt exist lol')
-              context.github.orgs.checkMembership({org: org, username: sender}).then(
+              context.github.orgs.checkMembership({org: 'ifmeorg', username: sender}).then(
                 result => {
                   app.log(result)
                 }
