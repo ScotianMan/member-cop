@@ -84,8 +84,9 @@ module.exports = app => {
               app.log(sender)
               app.log('====')
               app.log('Private member comment or possible someone who doesnt exist lol')
-              context.github.orgs.checkMembership({org: 'ifmeorg', username: sender}).then(
+              context.github.orgs.getMembers({org: 'ifmeorg', per_page: 100}).then(
                 result => {
+                  app.log(result.data)
                   if (result.status == 204){
                     app.log("Winner Winner, member of repo")
 
