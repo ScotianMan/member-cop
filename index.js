@@ -86,11 +86,16 @@ module.exports = app => {
               app.log('Private member comment or possible someone who doesnt exist lol')
               context.github.orgs.checkMembership({org: 'ifmeorg', username: sender}).then(
                 result => {
-                  app.log(result)
+                  if (result.status == 204){
+                    app.log("Winner Winner, member of repo")
+
+                  } else if (result.status == 404){
+                    app.log("Not a member of the repo")
+
+                  }
                 }
               )
               
-              app.log(result)
               app.log('====')
             }
           })
