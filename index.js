@@ -82,7 +82,11 @@ module.exports = app => {
             } else {
               app.log('====')
               app.log('Private member comment or possible someone who doesnt exist lol')
-              const result = await context.github.orgs.checkMembership({org, sender})
+              context.github.orgs.checkMembership({org, sender}).then(
+                result => {
+                  app.log(result)
+                }
+              )
               
               app.log(result)
               app.log('====')
